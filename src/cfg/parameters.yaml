@@ -1,0 +1,7 @@
+x_domain_size: 80
+y_domain_size: 40
+dx: 0.4
+dy: 0.4
+
+result_files:
+  path: 'test'
