@@ -1,7 +1,13 @@
-x_domain_size: 80
-y_domain_size: 40
-dx: 0.4
-dy: 0.4
+x_domain_size: 80   # x domain size or z domain size (sigma)
+y_domain_size: 40   # y domain size or r domain size  (sigma)
+dx: 0.4             # dx or dz
+dy: 0.4             # dy or dr
+D: 4.5              # small particle Diffusivity for
+k_small: 0.1        # small overall mass transfer coeff
+vmax: 1.0           # vmax
+rhobulk: 0.3        # small bulk concentration
+deltav: 15810
+iter_time: 1
 
 result_files:
   path: 'test'
