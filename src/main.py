@@ -14,13 +14,14 @@ def main():
     os.makedirs(result_path, exist_ok=True)
 
     # Check gpu.
-    device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f'Using {device} to compute...')
 
     # Compute.
-    m = int(param['x_domain_size']/param['dx'])
-    n = int(param['y_domain_size']/param['dy'])
-    dradius = param['dy']
+    A = torch.randn(2, 3, 4096, device=device)
+    B = torch.randn(2, 3, 3, device=device)
+    X = torch.linalg.solve(B,A)
+    print(X)
 
 
 if __name__ == '__main__':
