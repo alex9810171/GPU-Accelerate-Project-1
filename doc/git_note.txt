@@ -1,0 +1,18 @@
+# Initial setting
+git init (by VS Code)
+git remote add origin https://github.com/alex9810171/GPU-Accelerate-Project-1.git
+git branch -M main
+
+# Download
+git pull origin main
+
+# Upload
+git add .
+git commit -m "first commit" / git commit -m "update"
+git push -u origin main
+
+# Switch remote URLs
+git remote set-url origin 'LINK'
+
+# How to solve GH001: Large files detected. You may want to try Git Large File Storage?
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch file.pt'
