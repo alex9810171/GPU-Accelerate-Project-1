@@ -1,8 +1,7 @@
 import os, time
 import cupy as cp
 from cupyx.scipy.sparse import csr_matrix
-import scipy.sparse.linalg as sla
-from cupyx.scipy.sparse.linalg import lsqr, spilu, spsolve
+from cupyx.scipy.sparse.linalg import lsqr, spilu
 
 DATA_TYPE = cp.float64
 
