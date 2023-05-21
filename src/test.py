@@ -1,7 +1,7 @@
 import os, time
 import cupy as cp
 from cupyx.scipy.sparse import csr_matrix
-from cupyx.scipy.sparse.linalg import lsqr, spilu
+from cupyx.scipy.sparse.linalg import lsqr, spilu, spsolve
 
 DATA_TYPE = cp.float64
 
@@ -29,18 +29,20 @@ def get_matrix_b(size):
 
 def matrix_inv(output_path, now):
     result_txt_path = os.path.join(output_path, now+'_result.txt')
-    size = 105
+    size = 10000
     with open(result_txt_path, 'w') as f:
         # Get matrix a
         ## get value
         matrix_a = get_matrix_a(size=size)
 
         ## print value
+        '''
         print(f'Matrix A (data_type={matrix_a.dtype}):', file=f)
         for i in range(size):
             print(*matrix_a[i], file=f)
         print('', file=f)
-        
+        '''
+
         ## compress value
         matrix_a = csr_matrix(matrix_a)
 
@@ -49,10 +51,12 @@ def matrix_inv(output_path, now):
         matrix_b = get_matrix_b(size=size)
         
         ## print value
+        '''
         print(f'Matrix B (data_type={matrix_b.dtype}):', file=f)
         print(matrix_b, file=f)
         print('', file=f)
-        
+        '''
+
         # Start calculate matrix c
         ## get value
         start = time.time()
@@ -60,12 +64,14 @@ def matrix_inv(output_path, now):
         end = time.time()
 
         ## print value
-        print(f'Matrix C (data_type={matrix_c[0].dtype}):', file=f)
-        for i in range(matrix_c[0].shape[0]):
-            print(matrix_c[0][i], end=' ', file=f)
+        '''
+        print(f'Matrix C (data_type={matrix_c.dtype}):', file=f)
+        for i in range(matrix_c.shape[0]):
+            print(matrix_c[i], end=' ', file=f)
             if (i+1)%10 == 0:
                 print('', end='\n', file=f)
-        
+        '''
+                
         # Print time.
         print(f'Time eclipse: {end-start}s')
         print(f'\nTime eclipse: {end-start}s', file=f)
