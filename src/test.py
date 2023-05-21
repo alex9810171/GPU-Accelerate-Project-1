@@ -60,7 +60,7 @@ def matrix_inv(output_path, now):
         # Start calculate matrix c
         ## get value
         start = time.time()
-        matrix_c = lsqr(matrix_a, matrix_b)
+        matrix_c = spsolve(matrix_a, matrix_b)
         end = time.time()
 
         ## print value
