@@ -156,19 +156,27 @@ def compute_tridiagonal(output_path, now):
     t = T(size)
     matrix = (f.get_lower()+f.get_upper()+t.get_lower()+t.get_medium()+t.get_upper())
     end = time.time()
-    print(f'matrix construction time: {end-start} s')
+    print(f'INFO     | ideal2Dxy_scipy - matrix construction time: {end-start} s')
     
     # construct RHS
+    start = time.time()
     RHS = get_RHS()
+    end = time.time()
+    print(f'INFO     | ideal2Dxy_scipy - RHS construction time: {end-start} s')
 
     # compute LU
-    start=time.time()
+    start = time.time()
     lu=spilu(matrix, drop_tol=0, fill_factor=40)
+    end = time.time()
+    print(f'INFO     | ideal2Dxy_scipy - CPU incomplete LU decomposition time: {end-start} s')
+
+    start = time.time()
     rho=lu.solve(RHS)
     end = time.time()
-    print(f'matrix solving time: {end-start} s')
+    print(f'INFO     | ideal2Dxy_scipy - CPU solving linear equations time: {end-start} s')
     
     # write file
+    start=time.time()
     result_txt_path = os.path.join(output_path, FILE_NAME)
     with open(result_txt_path, 'w') as file:
         for i in range(size):
@@ -176,6 +184,8 @@ def compute_tridiagonal(output_path, now):
                 file.write(f'{rho[i]:.15f} ')
             else:
                 file.write(f'{rho[i]:.15f} \n')
+    end = time.time()
+    print(f'INFO     | ideal2Dxy_scipy - write file time: {end-start} s')
 
 def main():
     os.makedirs(result_path, exist_ok=True)
