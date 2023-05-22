@@ -1,1 +1,0 @@
-python3 -m src.main --config_path=src/cfg/parameters.yaml
