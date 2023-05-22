@@ -1,7 +1,9 @@
 import os, time
+import numpy as np
 import cupy as cp
 from cupyx.scipy.sparse import csr_matrix
 from cupyx.scipy.sparse.linalg import lsqr, spilu, spsolve
+from cupyx.profiler import benchmark
 
 DATA_TYPE = cp.float64
 
@@ -29,7 +31,7 @@ def get_matrix_b(size):
 
 def matrix_inv(output_path, now):
     result_txt_path = os.path.join(output_path, now+'_result.txt')
-    size = 10000
+    size = 10
     with open(result_txt_path, 'w') as f:
         # Get matrix a
         ## get value
@@ -60,8 +62,11 @@ def matrix_inv(output_path, now):
         # Start calculate matrix c
         ## get value
         start = time.time()
-        matrix_c = spsolve(matrix_a, matrix_b)
+        timecost = benchmark(spsolve, (matrix_a, matrix_b), n_repeat=1)
         end = time.time()
+        print(timecost.cpu_times)
+        print(timecost.gpu_times)
+        print(timecost, file=f)
 
         ## print value
         '''

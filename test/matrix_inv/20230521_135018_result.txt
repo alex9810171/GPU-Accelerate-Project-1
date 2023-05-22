@@ -1,0 +1,3 @@
+spsolve             :    CPU: 280918.500 us     GPU-0: 280964.020 us
+
+Time eclipse: 7.413655996322632s
