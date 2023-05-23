@@ -12,8 +12,8 @@ DATA_TYPE_2 = np.int32
 SAVE_PATH = 'spilu'
 FILE_NAME = 'ideal2Dxy.txt'
 
-x_domain_size = 770
-y_domain_size = 770
+x_domain_size = 800
+y_domain_size = 800
 dx = 1.0
 dy = 1.0
 D_x = 0.3                           # small particle Diffusivity for x-dir
@@ -176,7 +176,7 @@ def compute_tridiagonal(output_path, now):
 
     # compute LU
     start=time.time()
-    cp_lu=cp_spilu(matrix_cp, drop_tol=0, fill_factor=40)
+    cp_lu=cp_spilu(matrix_cp, drop_tol=0, fill_factor=(n+1)/20)
     end = time.time()
     print(f'INFO     | ideal2Dxy_cupy - CPU incomplete LU decomposition time: {end-start} s')
 
