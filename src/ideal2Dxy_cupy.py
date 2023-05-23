@@ -12,8 +12,8 @@ DATA_TYPE_2 = np.int32
 SAVE_PATH = 'spilu'
 FILE_NAME = 'ideal2Dxy.txt'
 
-x_domain_size = 800
-y_domain_size = 800
+x_domain_size = 1560
+y_domain_size = 1560
 dx = 1.0
 dy = 1.0
 D_x = 0.3                           # small particle Diffusivity for x-dir
